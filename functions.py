@@ -219,7 +219,7 @@ def create_feables(matches, fifa, bookkeepers, get_overall=False, horizontal=Tru
     bk_data.loc[:, 'match_api_id'] = matches.loc[:, 'match_api_id']
     end = time()
     if verbose:
-        print('Bookkeeper data generated in {:1.f} minutes'.format((end - start) / 60))
+        print('Bookkeeper data generated in {:.1f} minutes'.format((end - start) / 60))
 
     features = pd.merge(match_stats, fifa_stats, on='match_api_id', how='left')
     features = pd.merge(features, bk_data, on='match_api_id', how='left')
@@ -439,8 +439,7 @@ def find_good_bets(clf, dim_reduce, bk, bookkeepers, matches, fifa_data,
     '''Find good bets for a given classifier and matches.'''
     probs = compare_probabilities(clf, dim_reduce, bk, bookkeepers, matches,
                                   fifa_data, verbose)
-    probs.loc[:, 'prob_difference'] =
-        probs.loc[:, 'model_prob'] - probs.loc[:, 'bookkeeper_prob']
+    probs.loc[:, 'prob_difference'] = probs.loc[:, 'model_prob'] - probs.loc[:, 'bookkeeper_prob']
 
     values = probs['prob_difference']
     values = values.sort_values(ascending=False)
@@ -560,7 +559,7 @@ def plot_training_results(clfs, dm_reductions, train_scores, test_scores, path):
     ax.legend ((train_scores[0], test_scores[0]), ('Train Scores', 'Test Socores'))
     names = []
 
-    for i in range(0. len(clfs)):
+    for i in range(0, len(clfs)):
         clf = clfs[i]
         clf_name = clf.base_estimator.__class__.__name__
         dm = dm_reductions[i]
