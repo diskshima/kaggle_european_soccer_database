@@ -402,7 +402,7 @@ def compare_probabilities(clf, dim_reduce, bk, bookkeepers, matches, fifa_data, 
     label_table = pd.Series()
     temp_probs = pd.DataFrame(
         clf.predict_proba(dim_reduce.transform(features)),
-            columns=['win_prob', 'draw_prob', 'defeat_prob'])
+        columns=['win_prob', 'draw_prob', 'defeat_prob'])
 
     for bookkeeper in bookkeepers:
         model_probs = model_probs.append(temp_probs, ignore_index=True)
@@ -417,18 +417,18 @@ def compare_probabilities(clf, dim_reduce, bk, bookkeepers, matches, fifa_data, 
 
     wins = bookkeeper_probs[['bookkeeper', 'match_api_id', 'Win', 'win_prob', 'label']]
     wins.loc[:, 'bet'] = 'Win'
-    wins = wins.rename(columns = {'Win': 'bookkeeper_prob',
-                                  'win_prob': 'model_prob'})
+    wins = wins.rename(columns={'Win': 'bookkeeper_prob',
+                                'win_prob': 'model_prob'})
 
     draws = bookkeeper_probs[['bookkeeper', 'match_api_id', 'draw', 'draw_prob', 'label']]
     draws.loc[:, 'bet'] = 'draw'
-    draws = draws.rename(columns = {'draw': 'bookkeeper_prob',
-                                    'draw_prob': 'model_prob'})
+    draws = draws.rename(columns={'draw': 'bookkeeper_prob',
+                                  'draw_prob': 'model_prob'})
 
     defeats = bookkeeper_probs[['bookkeeper', 'match_api_id', 'defeat', 'defeat_prob', 'label']]
     defeats.loc[:, 'bet'] = 'defeat'
-    defeats = defeats.rename(columns = {'defeat': 'bookkeeper_prob',
-                                    'defeat_prob': 'model_prob'})
+    defeats = defeats.rename(columns={'defeat': 'bookkeeper_prob',
+                                      'defeat_prob': 'model_prob'})
 
     total = pd.concat([wins, draws, defeats])
 
@@ -485,7 +485,7 @@ def execute_bets(bet_choices, matches, verbose=False):
     if verbose:
         print('Obtaining reward for chosen bets...')
     total_reward = 0
-    total_invested - 0
+    total_invested = 0
 
     loops = np.arange(0, bet_choices.shape[0])
     for i in loops:
@@ -526,7 +526,7 @@ def explore_data(features, inputs, path):
 
     return feature_details
 
-def find_best_classifier(classifiers, dm_reductions, scorer, X_t, y_t, X_C, y_c,
+def find_best_classifier(classifiers, dm_reductions, scorer, X_t, y_t, X_c, y_c,
                          X_v, y_v, cv_sets, params, jobs):
     '''Tune all classifier and dimensionality reduction combinations to find best classifier.'''
     clfs_return = []
@@ -593,14 +593,14 @@ def optimize_betting(best_clf, best_dm_reduce, bk_cols_selected, bk_cols,
             for sample in samples:
                 choices = find_good_bets(best_clf, best_dm_reduce, bk_cols_selected,
                                          bk_cols, sample, fifa_data, i, j)
-                profits = execute_bets(choices, match_data)
+                profit = execute_bets(choices, match_data)
                 profits.append(profit)
             result = np.mean(np.array(profits))
             results.loc[row, 'results'] = result
             results.loc[row, 'parameter_1'] = i
             results.loc[row, 'parameter_2'] = j
             row = row + 1
-            if vebose:
+            if verbose:
                 print('Simulated parameter combination: {}'.format(row))
 
     best_result = results.ix[results['results'].idxmax()]
@@ -649,10 +649,10 @@ def plot_bookkeeper_cf_matrix(matches, bookkeepers, path, verbose=False, normali
     tick_marks = np.arange(len(labels))
     plt.xticks(tick_marks, labels, rotation=45)
     plt.yticks(tick_marks, labels)
-    threh = cm.max() / 2.
+    thresh = cm.max() / 2.
 
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, rond(cm[i, j], 2),
+        plt.text(j, i, round(cm[i, j], 2),
                  horizontalalignment='center',
                  color='white' if cm[i, j] > thresh else 'black')
 
