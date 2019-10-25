@@ -533,7 +533,7 @@ def find_best_classifier(classifiers, dm_reductions, scorer, X_t, y_t, X_c, y_c,
     clfs_return = []
     dm_reduce_return = []
     train_scores = []
-    test_scres = []
+    test_scores = []
 
     for dm in dm_reductions:
         for clf in clfs:
