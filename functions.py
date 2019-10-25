@@ -109,7 +109,7 @@ def get_last_matches(matches, date, team, x=10):
     last_matches = team_matches[team_matches.date < date].sort_values(by='date', ascending=False).iloc[0:x, :]
     return last_matches
 
-def get_last_matches_against_eachother(matches, date, home_team, away_team, x=10):
+def get_last_matches_against_each_other(matches, date, home_team, away_team, x=10):
     '''Get the last x matches of two given teams.'''
     home_matches = matches[(matches['home_team_api_id'] == home_team) &
                            (matches['away_team_api_id'] == away_team)]
@@ -160,7 +160,7 @@ def get_match_features(match, matches, x=10):
     matches_home_team = get_last_matches(matches, date, home_team, x)
     matches_away_team = get_last_matches(matches, date, away_team, x)
 
-    last_matches_against = get_last_matches_against_eachother(
+    last_matches_against = get_last_matches_against_each_other(
         matches, date, home_team, away_team, x # =3
     )
 
@@ -305,6 +305,7 @@ def convert_odds_to_prob(match_odds):
 
     return probs
 
+# bookkeepers: Bookkeeper tag
 def get_bookkeeper_data(matches, bookkeepers, horizontal=True):
     '''Aggregates bookkeeper data for all matches and bookkeepers'''
     bk_data = pd.DataFrame()
