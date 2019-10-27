@@ -459,7 +459,7 @@ def find_good_bets(clf, dim_reduce, bk, bookkeepers, matches, fifa_data,
 
 def get_reward(choice, matches):
     '''Get the reward of a given bet.'''
-    match = matches[matches.home_team_api_id == choice.match_api_id]
+    match = matches[matches.match_api_id == choice.match_api_id]
     bet_data = match.loc[:, (match.columns.str.contains(choice.bookkeeper))]
     cols = bet_data.columns.values
     cols[:3] = ['win', 'draw', 'defeat']
@@ -593,8 +593,8 @@ def optimize_betting(best_clf, best_dm_reduce, bk_cols_selected, bk_cols,
             profits = []
             for sample in samples:
                 choices = find_good_bets(best_clf, best_dm_reduce, bk_cols_selected,
-                                         bk_cols, sample, fifa_data, i, j)
-                profit = execute_bets(choices, match_data)
+                                         bk_cols, sample, fifa_data, i, j, verbose=verbose)
+                profit = execute_bets(choices, match_data, verbose=verbose)
                 profits.append(profit)
             result = np.mean(np.array(profits))
             results.loc[row, 'results'] = result
