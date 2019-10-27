@@ -421,14 +421,14 @@ def compare_probabilities(clf, dim_reduce, bk, bookkeepers, matches, fifa_data, 
     wins = wins.rename(columns={'Win': 'bookkeeper_prob',
                                 'win_prob': 'model_prob'})
 
-    draws = bookkeeper_probs[['bookkeeper', 'match_api_id', 'draw', 'draw_prob', 'label']]
+    draws = bookkeeper_probs[['bookkeeper', 'match_api_id', 'Draw', 'draw_prob', 'label']]
     draws.loc[:, 'bet'] = 'draw'
-    draws = draws.rename(columns={'draw': 'bookkeeper_prob',
+    draws = draws.rename(columns={'Draw': 'bookkeeper_prob',
                                   'draw_prob': 'model_prob'})
 
-    defeats = bookkeeper_probs[['bookkeeper', 'match_api_id', 'defeat', 'defeat_prob', 'label']]
+    defeats = bookkeeper_probs[['bookkeeper', 'match_api_id', 'Defeat', 'defeat_prob', 'label']]
     defeats.loc[:, 'bet'] = 'defeat'
-    defeats = defeats.rename(columns={'defeat': 'bookkeeper_prob',
+    defeats = defeats.rename(columns={'Defeat': 'bookkeeper_prob',
                                       'defeat_prob': 'model_prob'})
 
     total = pd.concat([wins, draws, defeats])
@@ -626,7 +626,7 @@ def plot_bookkeeper_cf_matrix(matches, bookkeepers, path, verbose=False, normali
 
     y_pred_temp = pd.DataFrame()
     y_pred_temp.loc[:, 'bk_label'] = bookkeeper_probs[['Win', 'Draw', 'Defeat']].idxmax(axis=1)
-    y_pred_temp.loc[:, 'match_api_id'] = bookkeepers.loc[:, 'match_api_id']
+    y_pred_temp.loc[:, 'match_api_id'] = bookkeeper_probs.loc[:, 'match_api_id']
 
     if verbose:
         print('Plotting confusion matrix...')

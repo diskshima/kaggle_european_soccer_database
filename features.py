@@ -13,9 +13,11 @@ features = inputs.drop('label', axis=1)
 features.head(5)
 feature_details = explore_data(features, inputs, db_path)
 
-# Split the data into train, calibrate and test data sets.
+# Split the data into train/calibrate and test data sets.
 X_train_calibrate, X_test, y_train_calibrate, y_test = train_test_split(
     features, labels, test_size=0.2, random_state=42, stratify=labels)
+
+# Split the training data into train and calibration data sets.
 X_train, X_calibrate, y_train, y_calibrate = train_test_split(
     X_train_calibrate, y_train_calibrate, test_size=0.3, random_state=42,
     stratify=y_train_calibrate)
