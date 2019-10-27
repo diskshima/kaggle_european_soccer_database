@@ -422,12 +422,12 @@ def compare_probabilities(clf, dim_reduce, bk, bookkeepers, matches, fifa_data, 
                                 'win_prob': 'model_prob'})
 
     draws = bookkeeper_probs[['bookkeeper', 'match_api_id', 'Draw', 'draw_prob', 'label']]
-    draws.loc[:, 'bet'] = 'draw'
+    draws.loc[:, 'bet'] = 'Draw'
     draws = draws.rename(columns={'Draw': 'bookkeeper_prob',
                                   'draw_prob': 'model_prob'})
 
     defeats = bookkeeper_probs[['bookkeeper', 'match_api_id', 'Defeat', 'defeat_prob', 'label']]
-    defeats.loc[:, 'bet'] = 'defeat'
+    defeats.loc[:, 'bet'] = 'Defeat'
     defeats = defeats.rename(columns={'Defeat': 'bookkeeper_prob',
                                       'defeat_prob': 'model_prob'})
 
