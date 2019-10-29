@@ -5,4 +5,4 @@ Proudly based on [Match Outcome Prediction in Football | Kaggle](https://www.kag
 ## TODO
 -[x] Enlarge graph.
 -[ ] Try with more data.
--[ ] Try XGBoost.
+-[x] Try XGBoost.
