@@ -15,7 +15,7 @@ kaggle kernels pull diskshima/european-soccer-database
 ```
 
 ## Features to Try
-- [ ] Country of league
+- [x] Country of league
 - [ ] Player height/weight
 - [ ] Player age
 - [ ] Recent match results
@@ -24,5 +24,6 @@ kaggle kernels pull diskshima/european-soccer-database
 
 ## TODO
 -[x] Enlarge graph.
--[ ] Try with more data.
 -[x] Try XGBoost.
+-[ ] Strip out bet analysis and focus on win/lose predictions.
+-[ ] Try with more data.
