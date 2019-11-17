@@ -19,11 +19,12 @@ kaggle kernels pull diskshima/european-soccer-database
 - [ ] Player height/weight
 - [ ] Player age
 - [ ] Recent match results
+- [ ] Home/away
 - [ ] Team shots
 - [ ] Righty/lefty
 
 ## TODO
 -[x] Enlarge graph.
 -[x] Try XGBoost.
--[ ] Strip out bet analysis and focus on win/lose predictions.
+-[x] Strip out bet analysis and focus on win/lose predictions.
 -[ ] Try with more data.
