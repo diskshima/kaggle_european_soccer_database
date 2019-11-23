@@ -27,4 +27,4 @@ kaggle kernels pull diskshima/european-soccer-database
 -[x] Enlarge graph.
 -[x] Try XGBoost.
 -[x] Strip out bet analysis and focus on win/lose predictions.
--[ ] Try with more data.
+-[x] Try with more data.
