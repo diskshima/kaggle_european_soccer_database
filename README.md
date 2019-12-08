@@ -23,9 +23,3 @@ kaggle kernels pull diskshima/european-soccer-database
 - [ ] Home/away
 - [ ] Team shots
 - [ ] Righty/lefty
-
-## TODO
--[x] Enlarge graph.
--[x] Try XGBoost.
--[x] Strip out bet analysis and focus on win/lose predictions.
--[x] Try with more data.
