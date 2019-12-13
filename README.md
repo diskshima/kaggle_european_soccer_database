@@ -18,7 +18,7 @@ kaggle kernels pull diskshima/european-soccer-database
 - [x] Country of league
 - [x] Player height/weight
 - [x] Player age
-- [ ] Use diffs of player attributes (rating, height, weight, age)
+- [x] Use diffs of player attributes (rating, height, weight, age)
 - [ ] Recent match results
 - [ ] Home/away
 - [ ] Team shots
